@@ -2,8 +2,7 @@ import discord
 import sys
 from discord.ext import commands
 import os, urllib, PIL
-#import cStringIO
-from io import StringIO #python 3, if you use 2. use the one before.
+from io import StringIO
 class CthsRandomStuff:
 
     def __init__(self, bot):
@@ -13,7 +12,7 @@ class CthsRandomStuff:
     async def ouchifell(self, ctx):
                 attachments = ctx.message.attachments
                 for attachment in attachments:
-                        file = StringIO(urllib.urlopen(attachment['url']).read())
+                        file = StringIO(urllib.request.urlopen(attachment['url']).read())
                         img = Image.open(file)
                         img = img.filter(ImageFilter.BLUR) 
                         img.save("ouch.jpg", "JPEG") 
