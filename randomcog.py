@@ -13,7 +13,8 @@ class CthsRandomStuff:
     async def ouchifell(self, ctx):
                 attachments = ctx.message.attachments
                 for attachment in attachments:
-                        file = cStringIO.StringIO(urllib.urlopen(attachment['url']).read())
+                        #file = cStringIO.StringIO(urllib.urlopen(attachment['url']).read())
+			            file = StringIO(urllib.urlopen(attachment['url']).read())
                         img = Image.open(file)
                         img = img.filter(ImageFilter.BLUR) 
                         img.save("ouch.jpg", "JPEG") 
