@@ -1,6 +1,7 @@
 import discord
 import sys
 from discord.ext import commands
+import os, urllib, PIL, cStringIO
 
 class CthsRandomStuff:
 
@@ -8,29 +9,21 @@ class CthsRandomStuff:
         self.bot = bot
         
     @commands.command()
-    async def brainfuck(self, ctx, code=""):
-        c = [0] * 30000
-        p = 0
-        loop = []
-        rv = []
-        ts = list(code)
-        l = len(ts)
-        i = 0;
-        while i < l:
-            t = ts[i]
-            if t == ">": p += 1
-            if t == "<": p -= 1
-            if t == "+": c[p] += 1
-            if t == "-": c[p] -= 1
-            if t == ".": rv.append(chr(c[p]))
-            if t == ",": pass
-            if t == "[":
-                if c[p] == 0:
-                    while ts[i] != "]": i += 1
-                    loop.pop()
-                else:
-                    loop.append(i - 1)
-        await ctx.send("".join(rv))
+    async def ouchifell(self, ctx):
+		try:
+		    attachments = ctx.message.attachments
+			for attachment in attachments:
+				file = cStringIO.StringIO(urllib.urlopen(attachment['url']).read())
+                img = Image.open(file)
+				img = img.filter(ImageFilter.BLUR) 
+				img.save("ouch.jpg", "JPEG") 
+			    await bot.upload(final, filename='ouch.jpg')
+				os.remove("ouch.jpg")
+				
+		except discord.errors.Forbidden:
+			await self.bot.say("ouch cant send files")
+		except Exception as e:
+			await self.bot.say(e)
                 
         
 def setup(bot):
