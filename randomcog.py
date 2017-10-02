@@ -29,7 +29,7 @@ class CthsRandomStuff:
                     while ts[i] != "]": i += 1
                     loop.pop()
                 else:
-                loop.append(i - 1)
+                    loop.append(i - 1)
             if t == "]": i = loop[-1]
             i += 1
         await ctx.send("".join(rv))
