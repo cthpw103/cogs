@@ -30,12 +30,8 @@ class CthsRandomStuff:
                     loop.pop()
                 else:
                     loop.append(i - 1)
-            if t == "]": i = loop[-1]
-            i += 1
         await ctx.send("".join(rv))
                 
         
 def setup(bot):
-    print("installing the best cog ever")
     bot.add_cog(CthsRandomStuff(bot))
-	print("thanks for using cth's random stuff cog :D")
