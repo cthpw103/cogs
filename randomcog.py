@@ -1,8 +1,9 @@
 import discord
 import sys
 from discord.ext import commands
-import os, urllib, PIL, cStringIO
-
+import os, urllib, PIL
+#import cStringIO
+from io import StringIO #python 3, if you use 2. use that.
 class CthsRandomStuff:
 
     def __init__(self, bot):
