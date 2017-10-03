@@ -16,7 +16,8 @@ class CthsRandomStuff:
                         img = Image.open(file)
                         img = img.filter(ImageFilter.BLUR) 
                         img.save("ouch.jpg", "JPEG") 
-                        await bot.upload(final, filename='ouch.jpg')
+                        with open('ouch.jpg', 'rb') as f:
+                            await bot.send_file(crx.message.channel, f)
                         os.remove("ouch.jpg")
 
     @commands.command()
