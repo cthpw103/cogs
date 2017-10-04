@@ -10,15 +10,13 @@ class CthsRandomStuff:
         
     @commands.command()
     async def ouchifell(self, ctx):
-                attachments = ctx.message.attachments
-                for attachment in attachments:
-                        file = StringIO(urllib.request.urlopen(attachment.url).read())
-                        img = Image.open(file)
-                        img = img.filter(ImageFilter.BLUR) 
-                        img.save("ouch.jpg", "JPEG") 
-                        with open('ouch.jpg', 'rb') as f:
-                            await bot.send_file(crx.message.channel, f)
-                        os.remove("ouch.jpg")
+                file = StringIO(urllib.request.urlopen(ctx.message.attachments[0].url).read())
+                img = Image.open(file)
+                img = img.filter(ImageFilter.BLUR) 
+                img.save("ouch.jpg", "JPEG") 
+                with open('ouch.jpg', 'rb') as f:
+                     await bot.send_file(crx.message.channel, f)
+                os.remove("ouch.jpg")
 
     @commands.command()
     async def halp(self, ctx):
